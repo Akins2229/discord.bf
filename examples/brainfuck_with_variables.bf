@@ -5,13 +5,11 @@
   >+++++++++[<++++++++>-]< >
   >+++++++++[<++++++++>-]< >
   >+++++++++[<++++++++>-]< >
-  >+++++++++[<++++++++>-]<      set string to be 5 "H" characters
-  <<<<<<<<$                     set variable
+  >+++++++++[<++++++++>-]<       set string to be 5 "H" characters
+  <<<<<<<<$                      set variable
   
->>>>>>>>>                       move to cell 9
->+++++++++[<++++++++>-]<        set cell value to "H"
-!.>.>.>.>.?                     call variable H in cell
-  
-excepected output:
-  HHHHH
-  
+>>>>>>>>>                        move to cell 9
+>+++++++++[<++++++++>-]<         set cell value to "H"
+!.>.>.>.>.?                      call variable H in cell
+
+++[<+++++>-]<                    move to available pointer afterwards

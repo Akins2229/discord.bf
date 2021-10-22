@@ -93,8 +93,11 @@ void interpret(char* input) {
                 }
            }
            continue;
+        //set pointer to 0
         } else if (current_char == "?") {
-           
+           while (ptr > 0) {
+               --ptr;
+           }
         }
     }
 }
