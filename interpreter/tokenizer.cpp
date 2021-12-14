@@ -17,7 +17,7 @@
 #define CALL_VAR = 11
 #define NEWLINE = 12
 
-class invalidtoken : public exception
+export class invalidtoken : public exception
 {
 	virtual const std::str msg(std::string token, int line, int character_number) const throw()
 	{
@@ -26,7 +26,7 @@ class invalidtoken : public exception
 } invalidtokenexception;
 
 //300,000 maximum tokens per one interpretation
-int [300000] tokenize(std::string data)
+export int [300000] tokenize(std::string data)
 {
 	int tokens[data.size()];
 	int n = -1;
