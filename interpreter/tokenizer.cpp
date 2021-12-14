@@ -15,26 +15,30 @@
 #define END_FUNC = 9
 #define DECL_VAR = 10
 #define CALL_VAR = 11
+#define NEWLINE = 12
 
 class invalidtoken : public exception
 {
-	virtual const char* msg(std::string token, int character_number) const throw()
+	virtual const std::str msg(std::string token, int line, int character_number) const throw()
 	{
-		return "An invalid token " + token + " has appeared at character " + std::to_string(character_number);
+		return "An invalid token '" + token + "' has appeared at line " + std::to_string(line) + " character "+ std::to_string(character_number) + "." + std::edl;;
 	}
 } invalidtokenexception;
 
-//3,000,000 maximum tokens per one interpretation
-int [3000000] tokens(std::string data)
+//300,000 maximum tokens per one interpretation
+int [300000] tokenize(std::string data)
 {
 	int tokens[data.size()];
 	int n = -1;
+	int line = 1;
 	for (std::string::size_type i = 0; i < data.size(); i++)
 	{
 		switch (data[i])
 		{
 		case "+":
+			line++;
 			tokens[n++] = ADD_PTR;
+			n = -1;
 		case "-":
 			tokens[n++] = SUBT_PTR;
 		case ">":
@@ -57,11 +61,13 @@ int [3000000] tokens(std::string data)
 			tokens[n++] = DECL_VAR;
 		case ":":
 			tokens[n++] = CALL_VAR;
+		case "\n":
+			tokens[n++] = NEWLINE;
 		default:
 			try {
 				throw invalidtokenexception;
 			} catch(exception& e) {
-				std::cout << e.msg(data[i], i + 1) << std::endl;
+				std::cout << e.msg(data[i], line, n) << std::endl;
 			}
 		}
 	}
